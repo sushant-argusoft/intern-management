@@ -1,0 +1,43 @@
+package com.sushant.spring.mentor_management.entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Set;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Entity
+@Table(name="address")
+@ToString
+
+public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="address_id")
+    private int id;
+    @Column(name = "house_number")
+    private int houseNumber;
+    @Column(name="street_number")
+    private int streetNumber;
+    @Column(name = "street_name")
+    private  String streetName;
+    @Column(name = "pin_code")
+    private int pinCode;
+    @Column(name ="city_name")
+    private  String cityName;
+    @Column(name="country_name")
+    private String countryName;
+
+
+     @OneToOne(mappedBy = "address")
+    private Company company;
+
+     @OneToMany (mappedBy = "address")
+    private Set<Person> items;
+
+}
