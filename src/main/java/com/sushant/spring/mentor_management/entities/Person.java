@@ -1,6 +1,5 @@
 package com.sushant.spring.mentor_management.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +25,13 @@ public class Person  {
     @Column(name = "date_of_birth")
     private  String dateOfBirth;
 
-    @JsonIgnore
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
+
+
+
 
 
 

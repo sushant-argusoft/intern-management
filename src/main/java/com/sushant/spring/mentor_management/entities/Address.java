@@ -3,8 +3,6 @@ package com.sushant.spring.mentor_management.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,10 +32,8 @@ public class Address {
     private String countryName;
 
 
-     @OneToOne(mappedBy = "address")
-    private Company company;
 
-     @OneToMany (mappedBy = "address")
-    private Set<Person> items;
+
+
 
 }

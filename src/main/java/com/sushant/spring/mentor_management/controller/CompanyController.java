@@ -2,8 +2,10 @@ package com.sushant.spring.mentor_management.controller;
 
 import com.sushant.spring.mentor_management.entities.Address;
 import com.sushant.spring.mentor_management.entities.Company;
+import com.sushant.spring.mentor_management.entities.Mentor;
 import com.sushant.spring.mentor_management.entities.Person;
 import com.sushant.spring.mentor_management.services.CompanyService;
+import com.sushant.spring.mentor_management.services.MentorService;
 import com.sushant.spring.mentor_management.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,10 @@ public class CompanyController {
     private CompanyService companyService;
     @Autowired
     private PersonService personService;
+
+
+    @Autowired
+    private MentorService mentorService;
     @GetMapping("/getCompany")
      public List<Company> getAllCompany(){
         return companyService.getAll();
@@ -35,5 +41,9 @@ public class CompanyController {
     @GetMapping("/getPerson/{getId}")
     public Address getPersonAddress(@PathVariable int getId){
         return personService.get(getId).getAddress();
+    }
+    @GetMapping("/getMentor")
+    public List<Mentor> getAllMentors(){
+        return mentorService.getAllMentor();
     }
 }
