@@ -1,17 +1,9 @@
 package com.sushant.spring.mentor_management.controller;
 
-import com.sushant.spring.mentor_management.entities.Address;
-import com.sushant.spring.mentor_management.entities.Company;
-import com.sushant.spring.mentor_management.entities.Mentor;
-import com.sushant.spring.mentor_management.entities.Person;
-import com.sushant.spring.mentor_management.services.CompanyService;
-import com.sushant.spring.mentor_management.services.MentorService;
-import com.sushant.spring.mentor_management.services.PersonService;
+import com.sushant.spring.mentor_management.entities.*;
+import com.sushant.spring.mentor_management.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +18,10 @@ public class CompanyController {
 
     @Autowired
     private MentorService mentorService;
+    @Autowired
+    private InternService internService;
+    @Autowired
+    private CourseService courseService;
     @GetMapping("/getCompany")
      public List<Company> getAllCompany(){
         return companyService.getAll();
@@ -45,5 +41,18 @@ public class CompanyController {
     @GetMapping("/getMentor")
     public List<Mentor> getAllMentors(){
         return mentorService.getAllMentor();
+    }
+    @GetMapping("/getIntern")
+    public List<Intern> getAllInterns(){
+        return internService.getAllIntern();
+    }
+
+    @GetMapping("/getCourse")
+    public List<Course> getAllCourses(){
+        return courseService.getAllCourses();
+    }
+    @PostMapping("/saveCourse")
+    public Course saveCourse(@RequestBody Course course){
+        return courseService.create(course);
     }
 }

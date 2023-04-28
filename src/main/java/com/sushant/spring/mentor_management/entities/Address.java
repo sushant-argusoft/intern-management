@@ -30,10 +30,4 @@ public class Address {
     private  String cityName;
     @Column(name="country_name")
     private String countryName;
-
-
-
-
-
-
 }
