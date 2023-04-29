@@ -1,10 +1,13 @@
 package com.sushant.spring.mentor_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,4 +32,12 @@ public class Course {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     Company company;
+
+    @JsonIgnoreProperties("courses")
+    @ManyToMany
+    @JoinTable(
+            name = "course_enrolled",
+            joinColumns = @JoinColumn(name = "intern_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    Set<Intern> interns;
 }

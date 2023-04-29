@@ -50,9 +50,15 @@ public class CompanyController {
     @GetMapping("/getCourse")
     public List<Course> getAllCourses(){
         return courseService.getAllCourses();
+
     }
     @PostMapping("/saveCourse")
     public Course saveCourse(@RequestBody Course course){
         return courseService.create(course);
     }
+    @PostMapping("/saveCompany")
+    public Company saveCompany(@RequestBody Company company){
+        return companyService.create(company);
+    }
+
 }
