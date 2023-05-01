@@ -7,4 +7,5 @@ import java.util.List;
 public interface InternService {
     Intern create(Intern intern);
     List<Intern> getAllIntern();
+    Intern getIntern(int internId);
 }

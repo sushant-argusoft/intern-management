@@ -1,27 +1,41 @@
 package com.sushant.spring.mentor_management.controller;
 
+import com.sushant.spring.mentor_management.dto.CourseDTO;
 import com.sushant.spring.mentor_management.entities.*;
 import com.sushant.spring.mentor_management.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
-    @Autowired
+
     private CompanyService companyService;
-    @Autowired
+
     private PersonService personService;
 
 
-    @Autowired
+
     private MentorService mentorService;
-    @Autowired
+
     private InternService internService;
-    @Autowired
+
     private CourseService courseService;
+
+    private  CategoryService categoryService;
+  @Autowired
+    public CompanyController(CompanyService companyService, PersonService personService, MentorService mentorService, InternService internService, CourseService courseService, CategoryService categoryService) {
+        this.companyService = companyService;
+        this.personService = personService;
+        this.mentorService = mentorService;
+        this.internService = internService;
+        this.courseService = courseService;
+        this.categoryService = categoryService;
+    }
+
     @GetMapping("/getCompany")
      public List<Company> getAllCompany(){
         return companyService.getAll();
@@ -42,6 +56,10 @@ public class CompanyController {
     public List<Mentor> getAllMentors(){
         return mentorService.getAllMentor();
     }
+    @GetMapping("/getIntern/{getId}")
+    public Intern getInternById(@PathVariable int getId){
+        return internService.getIntern(getId);
+    }
     @GetMapping("/getIntern")
     public List<Intern> getAllInterns(){
         return internService.getAllIntern();
@@ -53,8 +71,22 @@ public class CompanyController {
 
     }
     @PostMapping("/saveCourse")
-    public Course saveCourse(@RequestBody Course course){
-        return courseService.create(course);
+    public Course saveCourse(@RequestBody CourseDTO courseDTO){
+//        System.out.println(courseDTO);
+//        List<Intern> interns = new ArrayList<>();
+////        System.out.println(internService.getIntern(1));
+////        for(int i : courseDTO.getInternList()){
+////            interns.add(internService.getIntern(i));
+////        }
+//        Course course = new Course(courseDTO.getCourseId(),
+//                courseDTO.getCourseName(),
+//                categoryService.getCategory(courseDTO.getcId()),
+//                companyService.get(courseDTO.getCompanyId()),
+//                interns) ;
+
+
+
+        return courseService.save(courseDTO);
     }
     @PostMapping("/saveCompany")
     public Company saveCompany(@RequestBody Company company){

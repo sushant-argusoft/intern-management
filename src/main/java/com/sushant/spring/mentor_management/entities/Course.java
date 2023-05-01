@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,10 +34,10 @@ public class Course {
     Company company;
 
     @JsonIgnoreProperties("courses")
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name = "course_enrolled",
             joinColumns = @JoinColumn(name = "intern_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
-    Set<Intern> interns;
+    List<Intern> interns;
 }
