@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,15 +29,16 @@ public class Intern {
     private int internId;
 
 //    @JsonBackReference
+    @JsonIgnoreProperties("interns")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mentor_id" , referencedColumnName = "mentor_id", nullable = false)
+    @JoinColumn(name = "mentor_id" , referencedColumnName = "mentor_id", nullable = true)
     private Mentor mentor;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id", referencedColumnName = "person_id",nullable = false)
+    @JoinColumn(name = "person_id", referencedColumnName = "person_id",nullable = true)
     private Person person;
 
     @JsonIgnoreProperties("interns")
     @ManyToMany(mappedBy = "interns")
-    Set<Course> courses;
+    List<Course> courses;
 
 }

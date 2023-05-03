@@ -1,12 +1,20 @@
 package com.sushant.spring.mentor_management.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 @Data
 public class CourseDTO {
-   private   int courseId;
 
+   private   int courseId;
+   @NotNull
+   @NotBlank(message = "please enter valid course name")
    private String courseName;
+   @NotNull
+
    private int cId;
+   @NotNull
+
    private int companyId;
 
 

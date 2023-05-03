@@ -7,4 +7,6 @@ import java.util.List;
 public interface MentorService {
     Mentor create(Mentor mentor);
     List<Mentor> getAllMentor();
+
+    Mentor getMentor(int mentorId);
 }

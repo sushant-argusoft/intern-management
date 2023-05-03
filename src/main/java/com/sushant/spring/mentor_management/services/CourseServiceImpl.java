@@ -33,6 +33,7 @@ public class CourseServiceImpl implements CourseService{
         return courseRep.findAll();
     }
 
+    @Override
     public Course save(CourseDTO courseDTO){
 
 //        System.out.println(courseDTO);
@@ -51,7 +52,7 @@ public class CourseServiceImpl implements CourseService{
 }
 //
 //    Course course = new Course(courseDTO.getCourseId(),
-//            courseDTO.getCourseName(),
+//             courseDTO.getCourseName(),
 //            categoryService.getCategory(courseDTO.getcId()),
 //            companyService.get(courseDTO.getCompanyId()),
 //            interns) ;

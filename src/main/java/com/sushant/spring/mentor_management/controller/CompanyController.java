@@ -1,12 +1,15 @@
 package com.sushant.spring.mentor_management.controller;
 
 import com.sushant.spring.mentor_management.dto.CourseDTO;
+import com.sushant.spring.mentor_management.dto.InternDTO;
 import com.sushant.spring.mentor_management.entities.*;
 import com.sushant.spring.mentor_management.services.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -71,7 +74,7 @@ public class CompanyController {
 
     }
     @PostMapping("/saveCourse")
-    public Course saveCourse(@RequestBody CourseDTO courseDTO){
+    public ResponseEntity<String> saveCourse(@Valid @RequestBody CourseDTO courseDTO){
 //        System.out.println(courseDTO);
 //        List<Intern> interns = new ArrayList<>();
 ////        System.out.println(internService.getIntern(1));
@@ -86,11 +89,27 @@ public class CompanyController {
 
 
 
-        return courseService.save(courseDTO);
+        courseService.save(courseDTO);
+        return new ResponseEntity<>("data saved", HttpStatus.OK);
+    }
+
+    @PostMapping("/saveIntern")
+    public ResponseEntity<String> saveIntern(@Valid @RequestBody InternDTO internDTO)
+    {
+     internService.save(internDTO);
+     return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
     @PostMapping("/saveCompany")
-    public Company saveCompany(@RequestBody Company company){
+    public Company saveCompany(@Valid @RequestBody Company company){
         return companyService.create(company);
     }
+    @PutMapping("/editIntern/{id}")
+    public ResponseEntity<String> editIntern(@PathVariable int id , @RequestBody Intern intern){
+      internService.updateIntern(id , intern);
+      return new ResponseEntity<>("Data update", HttpStatus.OK);
+    }
+
+
+
 
 }

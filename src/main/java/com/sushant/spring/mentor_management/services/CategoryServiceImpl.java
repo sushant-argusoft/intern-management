@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 
 public class CategoryServiceImpl implements CategoryService {
-
+    @Autowired
    CategoryRep categoryRep;
-   @Autowired
 
-    public CategoryServiceImpl(CategoryRep categoryRep) {
-        this.categoryRep = categoryRep;
-    }
+
+//    public CategoryServiceImpl(CategoryRep categoryRep) {
+//        this.categoryRep = categoryRep;
+//    }
 
     @Override
     public Category create(Category category) {

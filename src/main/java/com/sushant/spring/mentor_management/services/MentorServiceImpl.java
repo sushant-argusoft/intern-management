@@ -28,4 +28,9 @@ public class MentorServiceImpl implements MentorService{
     public List<Mentor> getAllMentor() {
         return mentorRep.findAll();
     }
+
+    @Override
+    public Mentor getMentor(int mentorId) {
+        return mentorRep.findById(mentorId).orElseThrow(()-> new RuntimeException("mentor not found"));
+    }
 }
